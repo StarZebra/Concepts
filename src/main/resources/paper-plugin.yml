@@ -1,0 +1,4 @@
+name: concepts
+version: '${project.version}'
+main: me.starzebra.concepts.Concepts
+api-version: "1.19"
