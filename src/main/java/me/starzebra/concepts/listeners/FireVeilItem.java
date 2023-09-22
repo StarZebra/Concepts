@@ -21,10 +21,9 @@ public class FireVeilItem implements Listener {
     Plugin plugin = Concepts.getPlugin();
 
     boolean onCooldown = false;
-
     int mobsKilled = 0;
-    double circleRadius = 2.5;
-    int cylHeight = 6;
+    double circleRadius = 3;
+    float space = 1.75f;
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent event){
@@ -54,7 +53,7 @@ public class FireVeilItem implements Listener {
             @Override
             public void run() {
                 Location loc = player.getLocation();
-                for (double i = 0; i <=cylHeight; i+=1.5){
+                for (double i = 0; i <space*5; i+=space){
                     makeCircle(world, loc, circleRadius, i);
                     getEntitiesInCyl(player, circleRadius).forEach( (entity -> {
                         entity.remove();
@@ -76,7 +75,7 @@ public class FireVeilItem implements Listener {
     }
 
     private void makeCircle(World world, Location location, double radius, double yOffset){
-        for(int i = 0; i < 360; i+=30){
+        for(int i = 0; i <= 360; i+=30){
             double radians = Math.toRadians(i);
             double x = Math.cos(radians);
             double z = Math.sin(radians);
@@ -90,7 +89,7 @@ public class FireVeilItem implements Listener {
         ArrayList<Entity> stmt = new ArrayList<>();
         Location playerLoc = player.getLocation();
 
-        Location maxCylCenter = playerLoc.clone().add(0,cylHeight,0);
+        Location maxCylCenter = playerLoc.clone().add(0,space*5,0);
 
         for(Entity entity : player.getNearbyEntities(radius, radius, radius)){
             //Check if entity is in cylinder
