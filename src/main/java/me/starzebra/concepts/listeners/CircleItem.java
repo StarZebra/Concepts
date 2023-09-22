@@ -1,7 +1,7 @@
 package me.starzebra.concepts.listeners;
 
 import me.starzebra.concepts.Concepts;
-import me.starzebra.concepts.Utils.VectorUtils;
+import me.starzebra.concepts.utils.VectorUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
