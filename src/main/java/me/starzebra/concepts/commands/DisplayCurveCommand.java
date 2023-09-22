@@ -28,9 +28,12 @@ public class DisplayCurveCommand extends Command {
             Location p1 = CurveToolItem.curveDefiner;
             Location p2 = new Location(player.getWorld(), 34, 66, -67);
 
-            if(p1 == null) { sender.sendMessage(Component.text("Uhm yeah p1 is null bozo")); return false; }
+            if(p1 == null) {
+                sender.sendMessage(Component.text("Uhm yeah p1 is null bozo"));
+                return false;
+            }
 
-            List<Location> curve = CurveToolItem.bezierCurve(10, p0,p1,p2);;
+            List<Location> curve = CurveToolItem.bezierCurve(10, p0,p1,p2);
             for (Location point : curve) {
                 //player.getWorld().spawnParticle(Particle.END_ROD, point, 0);
                 Slime slime = (Slime) player.getWorld().spawnEntity(point, EntityType.SLIME);
