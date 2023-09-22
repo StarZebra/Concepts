@@ -1,6 +1,5 @@
 package me.starzebra.concepts;
 
-import me.starzebra.concepts.listeners.*;
 import me.starzebra.concepts.commands.DisplayCurveCommand;
 import me.starzebra.concepts.commands.ThingCommand;
 import org.bukkit.event.Listener;
@@ -24,17 +23,11 @@ public final class Concepts extends JavaPlugin {
         plugin = this;
         getLogger().severe("This is totally fine (real) trust me bro.");
 
-        getServer().getPluginManager().registerEvents(new DeathEventListener(), this);
         getServer().getCommandMap().register("thing", new ThingCommand("thing"));
         getServer().getCommandMap().register("display", new DisplayCurveCommand("display"));
-        getServer().getPluginManager().registerEvents(new DiamondHomeItem(), this);
-        getServer().getPluginManager().registerEvents(new CurveToolItem(), this);
-        getServer().getPluginManager().registerEvents(new CircleItem(), this);
-        getServer().getPluginManager().registerEvents(new TPItem(), this);
 
         //Auto register any Listener class
         String packageName = getClass().getPackage().getName();
-
         for (Class<?> clazz : new Reflections(packageName+ ".listeners").getSubTypesOf(Listener.class)){
             try {
 
@@ -47,8 +40,6 @@ public final class Concepts extends JavaPlugin {
                 throw new RuntimeException(e);
             }
         }
-
-
 
     }
 
