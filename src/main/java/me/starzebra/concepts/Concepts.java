@@ -17,6 +17,7 @@ public final class Concepts extends JavaPlugin {
         return plugin;
     }
 
+
     @Override
     public void onEnable() {
 
@@ -45,9 +46,11 @@ public final class Concepts extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
-        getLogger().fine("This is NOT fine, why I get disabled!!!! >:(");
+
+        getLogger().info("This is NOT fine, why I get disabled!!!! >:(");
     }
+
+
 
 
 }

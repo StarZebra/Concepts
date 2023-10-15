@@ -1,24 +1,13 @@
 package me.starzebra.concepts.commands;
 
-import me.starzebra.concepts.Concepts;
-import net.kyori.adventure.text.Component;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 
 public class ThingCommand extends Command {
-
-
 
     public ThingCommand(@NotNull String name) {
         super(name);
