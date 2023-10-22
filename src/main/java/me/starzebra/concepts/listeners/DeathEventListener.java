@@ -1,12 +1,15 @@
 package me.starzebra.concepts.listeners;
 
+import com.mojang.math.Transformation;
 import me.starzebra.concepts.Concepts;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Display;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -52,11 +55,11 @@ public class DeathEventListener implements Listener {
         float sizeThingyMajig = (float) total /16 +.4f;
 
 
-        net.minecraft.world.entity.Display.BlockDisplay nmsBlockDisplay = net.minecraft.world.entity.EntityType.BLOCK_DISPLAY.create(level);
+        Display.BlockDisplay nmsBlockDisplay = EntityType.BLOCK_DISPLAY.create(level);
         if(nmsBlockDisplay == null) return;
         Vec3 vecPos = new Vec3(droppedLocation.getX(), droppedLocation.getY(), droppedLocation.getZ());
         nmsBlockDisplay.moveTo(vecPos.add(0,1,0));
-        com.mojang.math.Transformation transformation = new com.mojang.math.Transformation(new Vector3f(-sizeThingyMajig/2,0,-sizeThingyMajig/2), new Quaternionf(0,0,0,1), new Vector3f(sizeThingyMajig, sizeThingyMajig, sizeThingyMajig), new Quaternionf(0,0,0,1));
+        Transformation transformation = new Transformation(new Vector3f(-sizeThingyMajig/2,0,-sizeThingyMajig/2), new Quaternionf(0,0,0,1), new Vector3f(sizeThingyMajig, sizeThingyMajig, sizeThingyMajig), new Quaternionf(0,0,0,1));
         nmsBlockDisplay.setTransformation(transformation);
         nmsBlockDisplay.setBlockState(Blocks.CHEST.defaultBlockState());
 
@@ -67,7 +70,7 @@ public class DeathEventListener implements Listener {
 
 
 
-        net.minecraft.world.entity.Display.TextDisplay nmsDisplay = net.minecraft.world.entity.EntityType.TEXT_DISPLAY.create(level);
+        Display.TextDisplay nmsDisplay = EntityType.TEXT_DISPLAY.create(level);
 
         if(nmsDisplay == null) return;
         //Transformation startTransform = new Transformation(new Vector3f(-sizeThingyMajig/2,0,-sizeThingyMajig/2), new Quaternionf(0,0,0,1), new Vector3f(sizeThingyMajig, sizeThingyMajig, sizeThingyMajig), new Quaternionf(0,0,0,1));
@@ -75,7 +78,7 @@ public class DeathEventListener implements Listener {
         nmsDisplay.moveTo(textPos);
         nmsDisplay.setText(net.minecraft.network.chat.Component.translatable("§6" + stackToHumanReadable(newList)));
         nmsDisplay.setFlags((byte)2);
-        nmsDisplay.setBillboardConstraints(net.minecraft.world.entity.Display.BillboardConstraints.CENTER);
+        nmsDisplay.setBillboardConstraints(Display.BillboardConstraints.CENTER);
         //nmsDisplay.getBukkitEntity().setMetadata("background", new FixedMetadataValue(plugin, 0));
 
         level.addFreshEntity(nmsDisplay, CreatureSpawnEvent.SpawnReason.CUSTOM);
